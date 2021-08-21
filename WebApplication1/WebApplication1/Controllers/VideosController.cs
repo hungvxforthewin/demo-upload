@@ -61,7 +61,9 @@ namespace WebApplication1.Controllers
                 string fileName = Path.GetFileName(fileupload.FileName);
                 int fileSize = (int)fileupload.Length;
                 int Size = (int)fileSize / 1000;
-                //
+                // if validate type video
+                List<string> ImageTypeList = new List<string> { ".jpg", ".png", ".jpeg", ".svg", ".gif" };
+                List<string> AllowTypeVideo = new List<string> { ".mp4" };
                 string filename = "";
                 // create file path
                 string extension = Path.GetExtension(fileupload.FileName);
@@ -95,7 +97,7 @@ namespace WebApplication1.Controllers
                     con.Open();
                     cmd.Parameters.AddWithValue("@Name", fileName);
                     cmd.Parameters.AddWithValue("@FileSize", Size);
-                    cmd.Parameters.AddWithValue("FilePath", "~/VideoFileUpload/" + fileName);
+                    cmd.Parameters.AddWithValue("FilePath", "~/uploads/video/" + fileName);
                     cmd.ExecuteNonQuery();
                 }
             }
